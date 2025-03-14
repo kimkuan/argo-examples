@@ -25,6 +25,11 @@ spec:
             cpu: "1"
           limits:
             memory: "1Gi"
+        readinessProbe:
+          httpGet:
+            path: /products
+            port: 8080
+            periodSeconds: 5
   strategy:
     canary:
       steps:
