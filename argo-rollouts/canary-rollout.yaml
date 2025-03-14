@@ -32,5 +32,5 @@ spec:
       - pause: {duration: 20s}
       - setWeight: 60
       - pause: {duration: 40s}
-  progressDeadlineSeconds: 5
+  progressDeadlineSeconds: 15
   progressDeadlineAbort: true
