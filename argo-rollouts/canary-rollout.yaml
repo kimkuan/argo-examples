@@ -29,7 +29,8 @@ spec:
           httpGet:
             path: /products
             port: 8080
-            periodSeconds: 5
+          periodSeconds: 5
+          failureThreshold: 5
   strategy:
     canary:
       steps:
