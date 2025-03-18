@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: istio-canary-example
+spec:
+  replicas: 4
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: istio-rollout-canary
+  template:
+    metadata:
+      labels:
+        app: istio-rollout-canary
+    spec:
+      containers:
+      - name: rollouts-demo
+        image: zxd46/example-apps:1.0.2
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "1"
+          limits:
+            memory: "1Gi"
+        readinessProbe:
+          httpGet:
+            path: /products
+            port: 8080
+          periodSeconds: 5
+          failureThreshold: 5
+  strategy:
+    canary:
+      canaryService: istio-canary-service
+      stableService: istio-stable-service
+      trafficRouting:
+        istio:
+          virtualServices:
+          - name: istio-virtual-service
+            routes:
+            - http-primary

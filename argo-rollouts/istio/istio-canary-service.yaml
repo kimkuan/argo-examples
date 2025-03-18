@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-virtual-service
+spec:
+  gateways:
+  - rollouts-demo-gateway
+  hosts: 
+  - istio-virtual-service.local
+  http:
+    - name: http-primary
+      route:
+      - destination:
+          host: istio-stable-service
+          port:
+            number: 8080
+        weight: 100
+      - destination:
+          host: istio-canary-service
+          port:
+            number: 8080
+        weight: 0
