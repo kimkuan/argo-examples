@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: istio-canary-example
 spec:
-  replicas: 4
+  replicas: 3
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: zxd46/example-apps:1.0.2
+        image: zxd46/example-apps:1.1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
@@ -41,3 +41,7 @@ spec:
           - name: istio-virtual-service
             routes:
             - http-primary
+      steps:
+      - setWeight: 10
+      - pause: 
+          duration: 20s
