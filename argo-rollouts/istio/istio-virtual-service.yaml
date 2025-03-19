@@ -14,10 +14,10 @@ spec:
       - destination:
           host: istio-stable-service
           port:
-            number: 8080
+            number: 8090
         weight: 100
       - destination:
           host: istio-canary-service
           port:
-            number: 8080
+            number: 8090
         weight: 0
