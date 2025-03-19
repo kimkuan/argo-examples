@@ -28,7 +28,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /actuator/health
-            port: 8080
+            port: 9113
           periodSeconds: 5
           failureThreshold: 5
   strategy:
