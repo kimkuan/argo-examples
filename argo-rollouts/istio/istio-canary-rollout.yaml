@@ -27,7 +27,7 @@ spec:
             memory: "1Gi"
         readinessProbe:
           httpGet:
-            path: /products
+            path: /actuator/health
             port: 8080
           periodSeconds: 5
           failureThreshold: 5
