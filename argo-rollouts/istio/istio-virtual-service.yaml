@@ -6,7 +6,8 @@ spec:
   gateways:
   - rollouts-demo-gateway
   hosts: 
-  - istio-virtual-service.local
+  - istio-stable-service.dev.svc.cluster.local
+  - istio-canary-service.dev.svc.cluster.local
   http:
     - name: http-primary
       route:
